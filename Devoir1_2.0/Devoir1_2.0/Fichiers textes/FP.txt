@@ -1,12 +1,12 @@
 nom
-anciennete
+1
 cours 1sur2
 12
 cours 2sur2
 22
 &
 nom
-anciennete
+2
 cours 1sur3
 13
 cours 2sur3
@@ -15,7 +15,7 @@ cours 3sur3
 33
 &
 nom
-anciennete
+3
 cours 1sur5
 15
 cours 2sur5
@@ -28,7 +28,7 @@ cours 5sur5
 55
 &
 nom
-anciennete
+4
 cours 1sur4
 14
 cours 2sur4

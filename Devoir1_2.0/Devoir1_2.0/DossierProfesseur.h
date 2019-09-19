@@ -1,16 +1,30 @@
 #pragma once
+#include <string>
 
-struct Professeur {
-	char* nom;
-	int anciennete;
-	Cours* listeCours = new Cours[];
-	Professeur* suivant;
-};
+using namespace std;
 
 struct Cours {
 	char* sigle;
 	int NbreEtud;
 	Cours* suivant;
+};
+
+struct Professeur {
+	string nom;
+	int anciennete;
+	Cours* listeCours;
+	Professeur* suivant;
+
+	Professeur(string nom, int anciennete) {
+		nom = this->nom;
+		anciennete = this->anciennete;
+	}
+
+	~Professeur() {}
+
+	void AjouterCours(string nomCours, int nbEtu) {
+		//À SUIVRE
+	}
 };
 
 class DossierProfesseur {
