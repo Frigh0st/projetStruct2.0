@@ -3,7 +3,7 @@
 struct Professeur {
 	char* nom;
 	int anciennete;
-	Cours* listeCours;
+	Cours* listeCours = new Cours[];
 	Professeur* suivant;
 };
 
