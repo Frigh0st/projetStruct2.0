@@ -15,11 +15,12 @@ int main()
 
 	if (myFile.is_open())
 	{
-		cout << "The file is open!" << endl;
+		std::cout << "The file is open!" << endl;
 		int cpt = 0;
 		string nom, nomCours;
 		int anciennete;
-		Professeur* prof;
+		DossierProfesseur* dp = new DossierProfesseur();
+		Professeur* prof = new Professeur("Temporaire", 99);
 		while (getline(myFile, output, '\n'))
 		{	
 
@@ -34,7 +35,7 @@ int main()
 			case 1://anciennete
 			{
 				cpt++;
-				prof = new Professeur(nom, std::stoi(output));
+				prof = dp->AjouterProfesseur(new Professeur(nom, std::stoi(output)));
 				break;
 			}
 			case 2://nomCours
@@ -61,7 +62,7 @@ int main()
 				break;
 			}
 
-			cout << output << endl;
+			std::cout << output << endl;
 		}
 	}
 
