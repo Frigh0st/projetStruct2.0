@@ -104,7 +104,7 @@ Cours* DossierProfesseur::LecoursLeplusDemande()
 						coursCompare = teteCompare;
 						bool trouver = false;
 
-						while (courant != NULL && !trouver)//comparer le cours courant à la grosseListeCours (.compare)
+						while (coursCourant != NULL && !trouver)//comparer le cours courant à la grosseListeCours (.compare)
 						{
 							if (coursCompare->sigle == coursCourant->sigle)
 							{							
@@ -135,7 +135,7 @@ Cours* DossierProfesseur::LecoursLeplusDemande()
 									coursCourant2 = coursCourant2->suivant;
 								}
 
-								coursCourant2->suivant = new Cours(coursCourant->sigle, coursCourant->NbreEtud, nullptr);
+								coursCourant2->suivant = new Cours(coursCourant->sigle, coursCourant->NbreEtud, nullptr);//VERIF est ce que grosseListeCours va réellement etre a jour ou coursCourant2 va devenir la nouvelle grosseListeCours
 							}
 						}
 					}
@@ -150,13 +150,68 @@ Cours* DossierProfesseur::LecoursLeplusDemande()
 
 	//Trouver lePlusDemande en bouclant dans la grosse liste et garder le maximum en variable. Si egal comparer les nbEtu
 
+	Cours* current = grosseListeCours;
+	lePlusDemande = current;
+
+	while (current->suivant != NULL)
+	{
+		if (current->nbInstance > lePlusDemande->nbInstance)
+		{
+			lePlusDemande = current;
+		}
+		else if (current->nbInstance == lePlusDemande->nbInstance)
+		{
+			if (current->NbreEtud > lePlusDemande->NbreEtud)
+			{
+				lePlusDemande = current;
+			}
+		}
+		current = current->suivant;
+	}
 	
 	return lePlusDemande;
 }
 
-char* DossierProfesseur::ProfesseurLeplusAncien()
+Professeur* DossierProfesseur::ProfesseurLeplusAncien()
 {
-	return nullptr;
+	Professeur* professeurCourant = tete;
+	Professeur* listeAncien = professeurCourant;
+
+	while (professeurCourant->suivant != NULL)
+	{
+		if (professeurCourant->anciennete > listeAncien->anciennete)
+		{
+			viderListeAncien(listeAncien);//vider tous mes maximums et garder celui qui est plus vieux
+			listeAncien = professeurCourant;
+		}
+		else if (professeurCourant->anciennete == listeAncien->anciennete)
+		{
+			//ajouter professeurCourant à la fin de liste Ancien
+			while (listeAncien->suivant != NULL)
+			{
+				listeAncien = listeAncien->suivant;
+			}
+
+			listeAncien->suivant = professeurCourant;
+		}
+		
+		professeurCourant = professeurCourant->suivant;
+	}
+
+	return listeAncien;//il faudra boucler pour afficher tous les profs les plus anciens
+}
+
+void viderListeAncien(Professeur* listeAncien) 
+{
+	Professeur* curProf;
+
+	while (listeAncien != NULL)
+	{
+		curProf = listeAncien;
+		listeAncien = listeAncien->suivant;
+		delete curProf;
+	}
+
 }
 
 void DossierProfesseur::Recopier(char* Nouveau)
