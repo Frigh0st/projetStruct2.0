@@ -1,4 +1,7 @@
 #include "DossierProfesseur.h"
+#include <iostream>
+#include <fstream>
+#include <string>
 
 DossierProfesseur::DossierProfesseur()
 {
@@ -172,6 +175,19 @@ Cours* DossierProfesseur::LecoursLeplusDemande()
 	return lePlusDemande;
 }
 
+void viderListeAncien(Professeur* listeAncien) 
+{
+	Professeur* curProf;
+
+	while (listeAncien != NULL)
+	{
+		curProf = listeAncien;
+		listeAncien = listeAncien->suivant;
+		delete curProf;
+	}
+
+}
+
 Professeur* DossierProfesseur::ProfesseurLeplusAncien()
 {
 	Professeur* professeurCourant = tete;
@@ -201,21 +217,42 @@ Professeur* DossierProfesseur::ProfesseurLeplusAncien()
 	return listeAncien;//il faudra boucler pour afficher tous les profs les plus anciens
 }
 
-void viderListeAncien(Professeur* listeAncien) 
-{
-	Professeur* curProf;
 
-	while (listeAncien != NULL)
-	{
-		curProf = listeAncien;
-		listeAncien = listeAncien->suivant;
-		delete curProf;
+void DossierProfesseur::Recopier(string Nouveau)
+{
+	std::ofstream outFile;
+	outFile.open(Nouveau);
+	Cours* coursCourant;
+	Professeur* courant = tete;
+	int it;
+	bool stop = false;
+
+	if (tete != 0) {
+		while (courant != nullptr)
+		{
+			it = 0;
+			outFile << courant->nom << endl;
+			outFile << courant->anciennete << endl;
+			if (courant->listeCours != NULL) {
+				coursCourant = courant->listeCours;
+				while (coursCourant != NULL) {
+					coursCourant = coursCourant->suivant;
+					it++;
+				}
+			}
+
+			outFile << it << endl;
+			outFile << "&" << endl;
+			courant = courant->suivant;
+
+		}
 	}
 
-}
 
-void DossierProfesseur::Recopier(char* Nouveau)
-{
+	outFile.close();
+
+
+
 }
 
 Professeur* DossierProfesseur::ChercherProfesseur(string nom)

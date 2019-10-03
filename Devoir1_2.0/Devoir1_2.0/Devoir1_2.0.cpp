@@ -64,8 +64,8 @@ int main()
 
 			std::cout << output << endl;
 		}
+		dp->Recopier("Nouveau.txt");
 	}
-
 	myFile.close();
 
 	return 0;

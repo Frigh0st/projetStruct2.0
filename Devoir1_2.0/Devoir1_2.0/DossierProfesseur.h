@@ -93,6 +93,6 @@ public:
 	int Commun(string X, string Y); // affiche le nombre de cours en commun entre les profs X et Y.
 	Cours* LecoursLeplusDemande(); // affiche le cours le plus demandé de la liste chaînée. En cas de solutions multiples, prendre celui ayant le plus d’étudiants.
 	Professeur* ProfesseurLeplusAncien(); // affiche le nom du professeur le plus ancien.
-	void Recopier(char* Nouveau); // recopie à partir de la liste chaînée le nom, ancienneté et le nombre de cours demandés pour chaque professeur dans le fichier texte Nouveau.
+	void Recopier(string Nouveau); // recopie à partir de la liste chaînée le nom, ancienneté et le nombre de cours demandés pour chaque professeur dans le fichier texte Nouveau.
 	Professeur* ChercherProfesseur(string nom);
 };
