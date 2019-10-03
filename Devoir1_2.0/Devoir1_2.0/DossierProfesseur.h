@@ -31,6 +31,7 @@ struct Professeur {
 		this->nom = nom;
 		this->anciennete = anciennete;
 		this->listeCours = new Cours();
+		this->suivant = NULL;
 	}
 
 	~Professeur() {}
