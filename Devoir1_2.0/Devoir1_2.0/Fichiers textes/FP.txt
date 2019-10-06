@@ -1,24 +1,24 @@
-nom
+prof1
 1
 cours 1sur2
 12
 cours 2sur2
 22
 &
-nom
+prof2
 2
-cours 1sur3
+anglais
 13
-cours 2sur3
+francais
 23
-cours 3sur3
+math
 33
 &
-nom
+prof3
 3
-cours 1sur5
+anglais
 15
-cours 2sur5
+francais
 25
 cours 3sur5
 35
@@ -27,7 +27,7 @@ cours 4sur5
 cours 5sur5
 55
 &
-nom
+Djamal
 4
 cours 1sur4
 14

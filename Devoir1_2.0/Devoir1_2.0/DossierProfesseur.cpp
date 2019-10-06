@@ -97,7 +97,7 @@ Cours* DossierProfesseur::LecoursLeplusDemande()
 			{
 				coursCourant = teteCours;
 
-				while (courant != NULL)//foreach cours
+				while (courant != NULL && coursCourant != NULL)//foreach cours
 				{
 					Cours* coursCompare;
 					Cours* teteCompare = grosseListeCours;
@@ -107,7 +107,7 @@ Cours* DossierProfesseur::LecoursLeplusDemande()
 						coursCompare = teteCompare;
 						bool trouver = false;
 
-						while (coursCourant != NULL && !trouver)//comparer le cours courant à la grosseListeCours (.compare)
+						while (coursCompare != NULL && !trouver)//comparer le cours courant à la grosseListeCours (.compare)
 						{
 							if (coursCompare->sigle == coursCourant->sigle)
 							{							
@@ -138,12 +138,12 @@ Cours* DossierProfesseur::LecoursLeplusDemande()
 									coursCourant2 = coursCourant2->suivant;
 								}
 
-								coursCourant2->suivant = new Cours(coursCourant->sigle, coursCourant->NbreEtud, nullptr);//VERIF est ce que grosseListeCours va réellement etre a jour ou coursCourant2 va devenir la nouvelle grosseListeCours
+								coursCourant2->suivant = new Cours(coursCourant->sigle, coursCourant->NbreEtud, nullptr);
 							}
 						}
 					}
 
-					coursCourant = coursCourant->suivant;
+					coursCourant = coursCourant->suivant;				
 				}
 			}
 
@@ -191,14 +191,14 @@ void viderListeAncien(Professeur* listeAncien)
 Professeur* DossierProfesseur::ProfesseurLeplusAncien()
 {
 	Professeur* professeurCourant = tete;
-	Professeur* listeAncien = professeurCourant;
+	Professeur* listeAncien = new Professeur("",0);
 
-	while (professeurCourant->suivant != NULL)
+	while (professeurCourant != NULL)
 	{
 		if (professeurCourant->anciennete > listeAncien->anciennete)
 		{
 			viderListeAncien(listeAncien);//vider tous mes maximums et garder celui qui est plus vieux
-			listeAncien = professeurCourant;
+			listeAncien = new Professeur(professeurCourant->nom, professeurCourant->anciennete);;
 		}
 		else if (professeurCourant->anciennete == listeAncien->anciennete)
 		{
@@ -208,7 +208,7 @@ Professeur* DossierProfesseur::ProfesseurLeplusAncien()
 				listeAncien = listeAncien->suivant;
 			}
 
-			listeAncien->suivant = professeurCourant;
+			listeAncien->suivant = new Professeur(professeurCourant->nom, professeurCourant->anciennete);
 		}
 		
 		professeurCourant = professeurCourant->suivant;

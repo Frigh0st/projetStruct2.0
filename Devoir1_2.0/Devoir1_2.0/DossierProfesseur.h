@@ -16,7 +16,9 @@ struct Cours {
 		this->nbInstance = 1;
 	}
 
-	Cours() {}
+	Cours() {
+		this->suivant = NULL;
+	}
 
 	~Cours() {}
 };
